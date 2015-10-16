@@ -5,6 +5,8 @@ This role is specifically for setting up networking in Rackspace Private Cloud O
 
 In order for this Ansible Role to work, your Ansible Root Directory must contain a __host_vars__ folder. Inside that folder will be a file for every server in your environment. Each file needs to be named after their respective server.
 
+## Single Network Interfaces
+
 If you are using single network interfaces, i.e. no bonding, each server's host_vars file will contain the following:
 
     ---
@@ -38,6 +40,8 @@ If you are using single network interfaces, i.e. no bonding, each server's host_
           vlan: 40
           address: 172.29.248.51
           netmask: 255.255.252.0
+
+## Active-Passive Bonding
 
 If you are using active-passive bonding, each server's host_vars file will contain the following:
 
@@ -83,6 +87,8 @@ If you are using active-passive bonding, each server's host_vars file will conta
           vlan: 40
           address: 172.29.248.51
           netmask: 255.255.252.0
+
+## Active-Active Bonding
 
 If you are using active-active bonding, each server's host_vars file will contain the following:
 
