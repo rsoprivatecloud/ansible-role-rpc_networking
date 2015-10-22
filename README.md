@@ -7,7 +7,7 @@ In order for this Ansible Role to work, your Ansible Root Directory must contain
 
 ## Single Network Interfaces
 
-If you are using single network interfaces, i.e. no bonding, each server's host_vars file will contain the following:
+If you are using single network interfaces, i.e. no bonding, each server's host_vars will have the following configuration (the IP addresses will be different for each file):
 
     ---
     rpc_networking:
@@ -43,7 +43,7 @@ If you are using single network interfaces, i.e. no bonding, each server's host_
 
 ## Active-Passive Bonding
 
-If you are using active-passive bonding, each server's host_vars file will contain the following:
+If you are using active-passive bonding, each server's host_vars will have the following configuration (the IP addresses will be different for each file):
 
     ---
     rpc_networking:
@@ -90,7 +90,7 @@ If you are using active-passive bonding, each server's host_vars file will conta
 
 ## Active-Active Bonding
 
-If you are using active-active bonding, each server's host_vars file will contain the following:
+If you are using active-active bonding, each server's host_vars will have the following configuration (the IP addresses will be different for each file):
 
     ---
     rpc_networking:
@@ -129,6 +129,83 @@ If you are using active-active bonding, each server's host_vars file will contai
           netmask: 255.255.252.0
         swift:
           interface: bond1
+          vlan: 40
+          address: 172.29.248.51
+          netmask: 255.255.252.0
+
+## PLUMgrid
+
+If you are setting up PLUMgrid, all nodes connecting to the Fabric Network will have the following configuration (the IP addresses will be different for each file):
+
+    ---
+    rpc_networking:
+        template: interfaces-single-plumgrid.j2
+        host:
+          interface: em1
+          address: 10.240.0.200
+          netmask: 255.255.252.0
+          gateway: 10.240.0.1
+          nameservers: '8.8.8.8 8.8.4.4'
+        mgmt:
+          interface: em2
+          vlan: 10
+          address: 172.29.236.51
+          netmask: 255.255.252.0
+        storage:
+          interface: em2
+          vlan: 20
+          address: 172.29.240.51
+          netmask: 255.255.252.0
+        plumgrid:
+          interface: em2
+          address: 172.29.252.51
+          netmask: 255.255.252.0
+        vxlan:
+          interface: em2
+          vlan: 30
+          address: 172.29.244.51
+          netmask: 255.255.252.0
+        swift:
+          interface: em2
+          vlan: 40
+          address: 172.29.248.51
+          netmask: 255.255.252.0
+
+If you are setting up PLUMgrid, all nodes acting as Gateway nodes will have the following configuration (the IP addresses will be different for each file):
+
+    ---
+    rpc_networking:
+        template: interfaces-single-plumgrid.j2
+        host:
+          interface: em1
+          address: 10.240.0.200
+          netmask: 255.255.252.0
+          gateway: 10.240.0.1
+          nameservers: '8.8.8.8 8.8.4.4'
+        mgmt:
+          interface: em2
+          vlan: 10
+          address: 172.29.236.51
+          netmask: 255.255.252.0
+        storage:
+          interface: em2
+          vlan: 20
+          address: 172.29.240.51
+          netmask: 255.255.252.0
+        plumgrid:
+          interface: em2
+          address: 172.29.252.51
+          netmask: 255.255.252.0
+        plumgrid_gateway:
+          interface: em3
+          vlan: 50
+        vxlan:
+          interface: em2
+          vlan: 30
+          address: 172.29.244.51
+          netmask: 255.255.252.0
+        swift:
+          interface: em2
           vlan: 40
           address: 172.29.248.51
           netmask: 255.255.252.0
