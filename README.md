@@ -135,7 +135,9 @@ If you are using active-active bonding, each server's host_vars will have the fo
 
 ## PLUMgrid
 
-If you are setting up PLUMgrid, all nodes connecting to the Fabric Network will have the following configuration (the IP addresses will be different for each file):
+### All Nodes
+
+All nodes connecting to the Fabric Network will have the following configuration (the IP addresses will be different for each file):
 
     ---
     rpc_networking:
@@ -171,7 +173,47 @@ If you are setting up PLUMgrid, all nodes connecting to the Fabric Network will 
           address: 172.29.248.51
           netmask: 255.255.252.0
 
-If you are setting up PLUMgrid, all nodes acting as Gateway nodes will have the following configuration (the IP addresses will be different for each file):
+### LCM Node
+
+The node responsible for hosting the LCM virtual machine will have the following configuration (the IP addresses will be different for each file):
+
+    ---
+    rpc_networking:
+        template: interfaces-single-plumgrid-lcm.j2
+        host:
+          interface: em1
+          address: 10.240.0.200
+          netmask: 255.255.252.0
+          gateway: 10.240.0.1
+          nameservers: '8.8.8.8 8.8.4.4'
+        mgmt:
+          interface: em2
+          vlan: 10
+          address: 172.29.236.51
+          netmask: 255.255.252.0
+        storage:
+          interface: em2
+          vlan: 20
+          address: 172.29.240.51
+          netmask: 255.255.252.0
+        plumgrid:
+          interface: em2
+          address: 172.29.252.51
+          netmask: 255.255.252.0
+        vxlan:
+          interface: em2
+          vlan: 30
+          address: 172.29.244.51
+          netmask: 255.255.252.0
+        swift:
+          interface: em2
+          vlan: 40
+          address: 172.29.248.51
+          netmask: 255.255.252.0
+
+### Gateway Nodes
+
+All nodes acting as Gateway nodes will have the following configuration (the IP addresses will be different for each file):
 
     ---
     rpc_networking:
