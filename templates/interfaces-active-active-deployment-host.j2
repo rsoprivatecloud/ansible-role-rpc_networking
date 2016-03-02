@@ -7,7 +7,7 @@ auto {{ item.name }}
 iface {{ item.name }} inet manual
 bond-master {{ item.bond }}
 
-{% endfor %}
+{% endfor -%}
 
 # Primary Network Interface
 auto {{ rpc_networking.host.interface }}
@@ -110,4 +110,3 @@ bridge_fd 0
 offload-sg off
 
 source /etc/network/interfaces.d/*.cfg
-

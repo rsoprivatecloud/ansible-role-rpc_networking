@@ -10,7 +10,7 @@ bond-master {{ item.bond }}
 bond-primary {{ item.name }}
 {% endif %}
 
-{% endfor %}
+{% endfor -%}
 
 # Primary Network Interface
 auto {{ rpc_networking.host.interface }}
@@ -109,4 +109,3 @@ bridge_fd 0
 offload-sg off
 
 source /etc/network/interfaces.d/*.cfg
-

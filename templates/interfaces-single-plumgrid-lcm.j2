@@ -32,7 +32,7 @@ iface {{ rpc_networking.swift.interface }}.{{ rpc_networking.swift.vlan }} inet 
 auto {{ rpc_networking.plumgrid_gateway.interface }}.{{ rpc_networking.plumgrid_gateway.vlan }}
 iface {{ rpc_networking.plumgrid_gateway.interface }}.{{ rpc_networking.plumgrid_gateway.vlan }} inet manual
 mtu 1580
-{% endif %}
+{% endif -%}
 
 # Container Bridge
 auto br-mgmt
