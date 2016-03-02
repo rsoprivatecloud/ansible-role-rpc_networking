@@ -26,15 +26,19 @@ bond-mode 1
 bond-miimon 100
 bond-slaves none
 
+# Container VLAN Tagged Interface
 auto {{ rpc_networking.mgmt.interface }}.{{ rpc_networking.mgmt.vlan }}
 iface {{ rpc_networking.mgmt.interface }}.{{ rpc_networking.mgmt.vlan }} inet manual
 
+# Storage VLAN Tagged Interface
 auto {{ rpc_networking.storage.interface }}.{{ rpc_networking.storage.vlan }}
 iface {{ rpc_networking.storage.interface }}.{{ rpc_networking.storage.vlan }} inet manual
 
+# VXLAN VLAN Tagged Interface
 auto {{ rpc_networking.vxlan.interface }}.{{ rpc_networking.vxlan.vlan }}
 iface {{ rpc_networking.vxlan.interface }}.{{ rpc_networking.vxlan.vlan }} inet manual
 
+# Swift Replication VLAN Tagged Interface
 auto {{ rpc_networking.swift.interface }}.{{ rpc_networking.swift.vlan }}
 iface {{ rpc_networking.swift.interface }}.{{ rpc_networking.swift.vlan }} inet manual
 

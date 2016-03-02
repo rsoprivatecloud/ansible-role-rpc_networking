@@ -2,6 +2,7 @@
 auto lo
 iface lo inet loopback
 
+# Host Physical Interface
 auto {{ rpc_networking.host.interface }}
 iface {{ rpc_networking.host.interface }} inet static
 address {{ rpc_networking.host.address }}
@@ -9,22 +10,27 @@ netmask {{ rpc_networking.host.netmask }}
 gateway {{ rpc_networking.host.gateway }}
 dns-nameservers {{ rpc_networking.host.nameservers }}
 
+# PLUMgrid Fabric Physical Interface
 auto {{ rpc_networking.plumgrid.interface }}
 iface {{ rpc_networking.plumgrid.interface }} inet static
 address {{ rpc_networking.plumgrid.address }}
 netmask {{ rpc_networking.plumgrid.netmask }}
 mtu 1580
 
+# Container VLAN Tagged Interface
 auto {{ rpc_networking.mgmt.interface }}.{{ rpc_networking.mgmt.vlan }}
 iface {{ rpc_networking.mgmt.interface }}.{{ rpc_networking.mgmt.vlan }} inet manual
 
+# Storage VLAN Tagged Interface
 auto {{ rpc_networking.storage.interface }}.{{ rpc_networking.storage.vlan }}
 iface {{ rpc_networking.storage.interface }}.{{ rpc_networking.storage.vlan }} inet manual
 
+# Swift Replication VLAN Tagged Interface
 auto {{ rpc_networking.swift.interface }}.{{ rpc_networking.swift.vlan }}
 iface {{ rpc_networking.swift.interface }}.{{ rpc_networking.swift.vlan }} inet manual
 
 {% if rpc_networking.plumgrid_gateway is defined %}
+# PLUMgrid Gateway VLAN Tagged Interface
 auto {{ rpc_networking.plumgrid_gateway.interface }}.{{ rpc_networking.plumgrid_gateway.vlan }}
 iface {{ rpc_networking.plumgrid_gateway.interface }}.{{ rpc_networking.plumgrid_gateway.vlan }} inet manual
 mtu 1580
