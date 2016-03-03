@@ -7,7 +7,7 @@ In order for this Ansible Role to work, your Ansible Root Directory must contain
 
 ## Single Network Interfaces
 
-If you are using single network interfaces, i.e. no bonding, each server's host_vars will have the following configuration (the IP addresses will be different for each file):
+If you are using single network interfaces, i.e. no bonding, each server's host_vars will have the following configuration (the IP addresses will be different for each file). The __mtu__ key is optional and will default to 1500 if not specified.
 
     ---
     rpc_networking:
@@ -49,7 +49,7 @@ If you are using single network interfaces, i.e. no bonding, each server's host_
 
 ## Active-Passive Bonding
 
-If you are using active-passive bonding, each server's host_vars will have the following configuration (the IP addresses will be different for each file):
+If you are using active-passive bonding, each server's host_vars will have the following configuration (the IP addresses will be different for each file). The __mtu__ key is optional and will default to 1500 if not specified.
 
     ---
     rpc_networking:
@@ -106,7 +106,7 @@ If you are using active-passive bonding, each server's host_vars will have the f
 
 ## Active-Active Bonding
 
-If you are using active-active bonding, each server's host_vars will have the following configuration (the IP addresses will be different for each file):
+If you are using active-active bonding, each server's host_vars will have the following configuration (the IP addresses will be different for each file). The __mtu__ key is optional and will default to 1500 if not specified.
 
     ---
     rpc_networking:
@@ -163,7 +163,7 @@ If you are using active-active bonding, each server's host_vars will have the fo
 
 ### All Nodes
 
-All nodes connecting to the Fabric Network will have the following configuration (the IP addresses will be different for each file):
+All nodes connecting to the Fabric Network will have the following configuration (the IP addresses will be different for each file). The __mtu__ key is optional for everything but the __plumgrid__ interface; for all other interfaces it will default to 1500 if not specified.
 
     ---
     rpc_networking:
@@ -207,7 +207,7 @@ All nodes connecting to the Fabric Network will have the following configuration
 
 ### LCM Node
 
-The node responsible for hosting the LCM virtual machine will have the following configuration (the IP addresses will be different for each file):
+The node responsible for hosting the LCM virtual machine will have the following configuration (the IP addresses will be different for each file). The __mtu__ key is optional for everything but the __plumgrid__ interface; for all other interfaces it will default to 1500 if not specified.
 
     ---
     rpc_networking:
@@ -251,7 +251,7 @@ The node responsible for hosting the LCM virtual machine will have the following
 
 ### Gateway Nodes
 
-All nodes acting as Gateway nodes will have the following configuration (the IP addresses will be different for each file):
+All nodes acting as Gateway nodes will have the following configuration (the IP addresses will be different for each file). The __mtu__ key is optional for everything but the __plumgrid__ and __plumgrid_gateway__ interfaces; for all other interfaces it will default to 1500 if not specified.
 
     ---
     rpc_networking:
